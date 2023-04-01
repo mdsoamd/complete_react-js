@@ -1,14 +1,25 @@
 import './ExpenseItem.css'
 
-
-function ExpenseItem(){
+//TODO This is Component
+function ExpenseItem(props){
+    const month = props.data.toLocaleString('en-US',{month:'long'})
+    const year = props.data.getFullYear()
+    const day = props.data.toLocaleString('en-US',{day:'2-digit'})
+    
+    
     return(
         <div className='expens-item'>
 
-            <div>Macth 12th 20021</div>
+            <div>
+                
+                <div>{ month }</div>
+                <div>{ year }</div>
+                <div>{ day }</div>
+
+            </div>
             <div className='expens-item__description'>
-                <h2>Car Insurance</h2>
-                <div className='expens-item__price'>$200</div>
+                <h2>{props.title}</h2>
+                <div className='expens-item__price'>${props.amount}</div>
             </div>
             
         </div>
