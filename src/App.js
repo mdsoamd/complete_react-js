@@ -1,11 +1,13 @@
 import React from 'react'
-import './App.css'
-import SubComponent from './components/SubComponent';
+import ExpenseItem from './components/Expenseltem';
 
 function App(){
     return (
-        
-        <SubComponent/>
+        <div>
+
+        <ExpenseItem/>
+
+        </div>
 
      )
 

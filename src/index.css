@@ -1,10 +1,19 @@
-/* *
-{
-    padding: 0px;
-    margin: 0px;
-} */
+@import url("https://fonts.googleapis.com/css2?family=Not0+Sans+JP:wght@400;700&disp1ay=swap");
 
-/* body
+
+
+*
 {
-    background-color: teal;
-} */
+  box-sizing: border-box;
+}
+
+html {
+    font-family:'Noto Sans JP',sans-serif;
+}
+
+
+body
+{
+    margin: 0;
+    background-color: #3f3f3f;
+}
