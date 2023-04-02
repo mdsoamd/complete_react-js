@@ -1,7 +1,10 @@
 import React from "react";
-import ExpenseItem from "./components/Expenseltem";
+import Expense from "./components/Expense/Expense";
 
-function App() {
+
+
+const App = () => {
+
   let expentse = [
     {
       id: "e1",
@@ -32,57 +35,12 @@ function App() {
   return (
     <div>
 
-
-
- 
-
-
-
-      <ExpenseItem                          //* <-- render Karne Ka pahla Tarika yah hai
-        data={expentse[0].date}
-        title={expentse[0].title}
-        amount={expentse[0].amount}
-      />
-
-      <ExpenseItem
-        data={expentse[1].date}
-        title={expentse[1].title}
-        amount={expentse[1].amount}
-      />
-
-      <ExpenseItem
-        data={expentse[2].date}
-        title={expentse[2].title}
-        amount={expentse[2].amount}
-      />
-
-      <ExpenseItem
-        data={expentse[3].date}
-        title={expentse[3].title}
-        amount={expentse[3].amount}
-      />
-
-
-
-
-   {/* {expentse.map((element, index) => {              //* <-- render Karne Ka dusra Tarika yah hai
-        return (
-
-          <ExpenseItem
-            data={element.date}
-            title={element.title}
-            amount={element.amount}
-          />
-          
-        );
-
-    })} */}
-
-
-
-      
+        <Expense item={expentse}/>
+        
     </div>
   );
+
+  
 }
 
 export default App;
