@@ -8,33 +8,66 @@ let DUMMY_EXPENSE = [];
 
 const App = () => {
 
- const [expenses,setExpenses] = useState(DUMMY_EXPENSE)
+ const [expenses,setExpenses] = useState(DUMMY_EXPENSE);
+
+
+ function fetchData(){
+
+      fetch("http://localhost:5000/api/v1/get").then(                   //* <-- API - GET Request
+
+      response => {
+
+        return response.json();
+          
+      }).then(
+        data => {
+          console.log(data);
+          setExpenses(data);
+        }
+    )
+  
+   
+ }
+ 
+ 
 
  useEffect(() => {
 
-  fetch("http://localhost:5000/api/v1/get").then(                   //* <-- API - GET Request
+    fetchData()     //* <-- fetchData function call
 
-    response => {
-
-      return response.json();
-        
-    }).then(
-      data => {
-        console.log(data);
-        setExpenses(data);
-      }
-  )
- },[])
+ },[]);
 
  
 
 
+
+
+
+
+
   const addExpenseHandler = (expense) => {
 
-          //* Provide User data Receive add
-    const updatedExpense = [expense,...expenses]           //* <-- 3 ...meaning this ( All property old object data copy new object data add karta hai)
-    setExpenses(updatedExpense);
-    console.log(expense);
+    fetch("http://localhost:5000/api/v1/post",{         //* <-- API - Post Request
+      method:'POST',
+      body:JSON.stringify(expense),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+       
+    }).then(
+
+      response =>{
+
+          fetchData()      //* <-- fetchData function call
+          
+      }
+
+    )
+    
+    
+  
+    //! const updatedExpense = [expense,...expenses]           //* <-- 3 ...meaning this ( All property old object data copy new object data add karta hai)
+    //! setExpenses(updatedExpense);
 
 };
   
