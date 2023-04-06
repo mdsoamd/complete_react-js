@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import './ExpenseItem.css'
 import ExpenseDate from './ExpenseDate'
 import Card from '../UI/Card'
@@ -11,7 +10,7 @@ const ExpenseItem = (props) => {
     return(
         <Card className='expens-item'>
 
-          <ExpenseDate date={props.date}/>
+          <ExpenseDate date={ new Date( props.date) }/>     {/* Yah Hai Date ka object banane ka tarika */}
 
             <div className='expens-item__description'>
                 

@@ -1,49 +1,40 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Expense from "./components/Expense/Expense";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 
-let DUMMY_EXPENSE = [
-  {
-    id: "e1",
-    title: "School Fee",
-    amount: 350,
-    date: new Date(2022, 4, 28),
-  },
-  {
-    id: "e2",
-    title: "Books",
-    amount: 250,
-    date: new Date(2022, 2, 20),
-  },
-  {
-    id: "e3",
-    title: "House Rent",
-    amount: 800,
-    date: new Date(2022, 8, 15),
-  },
-  {
-    id: "e4",
-    title: "Food",
-    amount: 540,
-    date: new Date(2022, 1, 10),
-  },
-];
+let DUMMY_EXPENSE = [];
 
 
 const App = () => {
 
-
  const [expenses,setExpenses] = useState(DUMMY_EXPENSE)
 
+ useEffect(() => {
+
+  fetch("http://localhost:5000/api/v1/get").then(                   //* <-- API - GET Request
+
+    response => {
+
+      return response.json();
+        
+    }).then(
+      data => {
+        console.log(data);
+        setExpenses(data);
+      }
+  )
+ },[])
+
+ 
 
 
   const addExpenseHandler = (expense) => {
-   
 
-    const updatedExpense = [expense,...expenses]           //* <-- 3 ...meaning this ( All property old object data copy new object data then add)
+          //* Provide User data Receive add
+    const updatedExpense = [expense,...expenses]           //* <-- 3 ...meaning this ( All property old object data copy new object data add karta hai)
     setExpenses(updatedExpense);
-    console.log(expense)
+    console.log(expense);
 
 };
   
@@ -54,9 +45,9 @@ const App = () => {
   return (
     <div>
 
-        <NewExpense onAddExpense={addExpenseHandler}/>                   {/* <--  DATA Receive (Child-to-Parent) */}
+        <NewExpense onAddExpense={addExpenseHandler}/>                   {/* <--  DATA Receive (Child-to-Parent) Function addExpenseHandler call */}
 
-        <Expense item={expenses}/>
+        <Expense item={expenses}/>   {/* Data Send Expense Component */}
         
     </div>
   );
